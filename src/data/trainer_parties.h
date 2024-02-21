@@ -10994,7 +10994,7 @@ static const struct TrainerMon sParty_Angelo[] = {
     {
     .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
     .lvl = 17,
-    .species = SPECIES_HILIOPTILE,
+    .species = SPECIES_HELIOPTILE,
     .heldItem = ITEM_NONE,
     .moves = {MOVE_SHOCK_WAVE, MOVE_BULLDOZE, MOVE_LIGHT_SCREEN, MOVE_LOW_SWEEP}
     }
