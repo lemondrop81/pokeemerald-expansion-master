@@ -8222,7 +8222,7 @@ static const struct TrainerMon sParty_Danielle[] = {
     .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
     .lvl = 23,
     .species = SPECIES_SIMISEAR,
-    .moves = {MOVE_HEATWAVE, MOVE_NASTY_PLOT, MOVE_TOXIC, MOVE_DISARMING_VOICE}
+    .moves = {MOVE_HEAT_WAVE, MOVE_NASTY_PLOT, MOVE_TOXIC, MOVE_DISARMING_VOICE}
     }
 };
 
