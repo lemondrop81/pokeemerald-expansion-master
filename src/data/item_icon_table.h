@@ -861,4 +861,17 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_GLIMMERING_CHARM] = {gItemIcon_GlimmeringCharm, gItemIconPalette_GlimmeringCharm},
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
+
+        // Start qol_field_moves
+    [ITEM_CUT_TOOL] = {gItemIcon_Axe, gItemIconPalette_Axe},
+    [ITEM_FLY_TOOL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_SURF_TOOL] = {gItemIcon_Surfboard, gItemIconPalette_Surfboard},
+    [ITEM_STRENGTH_TOOL] = {gItemIcon_PowerGlove, gItemIconPalette_PowerGlove},
+    [ITEM_FLASH_TOOL] = {gItemIcon_Lantern, gItemIconPalette_Lantern},
+    [ITEM_ROCKSMASH_TOOL] = {gItemIcon_Pickaxe, gItemIconPalette_Pickaxe},
+    [ITEM_WATERFALL_TOOL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_DIVE_TOOL] = {gItemIcon_ScubaGear, gItemIconPalette_ScubaGear},
+    [ITEM_TELEPORT_TOOL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_SWEETSCENT_TOOL] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    // End qol_field_moves
 };
