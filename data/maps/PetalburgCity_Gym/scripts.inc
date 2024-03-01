@@ -395,6 +395,9 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
 	closemessage
 	delay 40
+	call PetalburgCity_Gym_EventScript_GiveSurfboard
+	closemessage
+	delay 30
 	playse SE_DOOR
 	delay 10
 	addobject LOCALID_WALLYS_DAD
@@ -410,6 +413,11 @@ PetalburgCity_Gym_EventScript_GiveFacade::
 	setflag FLAG_RECEIVED_TM_FACADE
 	msgbox PetalburgCity_Gym_Text_ExplainFacade, MSGBOX_DEFAULT
 	return
+
+PetalburgCity_Gym_EventScript_GiveSurfboard::
+	giveitem ITEM_SURF_TOOL
+	msgbox PetalburgCity_Gym_Text_ExplainSurfboard, MSGBOX_DEFAULT
+	return	
 
 PetalburgCity_Gym_EventScript_WallysDadArrivesNorth::
 	setvar VAR_0x8008, 1
@@ -1297,6 +1305,11 @@ PetalburgCity_Gym_Text_ExplainFacade:
 	.string "or burned.\p"
 	.string "It might be able to turn a bad\n"
 	.string "situation into an advantage.$"
+
+PetalburgCity_Gym_Text_ExplainSurfboard:
+	.string "With this surfboard you'll be,\p"
+	.string "more reaches of Hoenn and travel\n"
+	.string "across the water.$"
 
 PetalburgCity_Gym_Text_DadHappyAndSad:
 	.string "DAD: As the GYM LEADER, I can't\n"

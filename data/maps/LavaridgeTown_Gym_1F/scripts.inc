@@ -74,6 +74,9 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated::
 	call LavaridgeTown_Gym_1F_EventScript_GiveOverheat
 	closemessage
 	delay 30
+	call LavaridgeTown_Gym_1F_EventScript_GivePowerGloves
+	closemessage
+	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox LavaridgeTown_Gym_1F_Text_RegisteredFlannery, MSGBOX_DEFAULT
 	waitfanfare
@@ -96,6 +99,11 @@ LavaridgeTown_Gym_1F_EventScript_GiveOverheat::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	msgbox LavaridgeTown_Gym_1F_Text_ExplainOverheat, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_OVERHEAT
+	return
+
+LavaridgeTown_Gym_1F_EventScript_GivePowerGloves::
+	giveitem ITEM_STRENGTH_TOOL
+	msgbox LavaridgeTown_Gym_1F_Text_ExplainPowerGloves, MSGBOX_DEFAULT
 	return
 
 LavaridgeTown_Gym_1F_EventScript_FlanneryRematch::
@@ -351,6 +359,10 @@ LavaridgeTown_Gym_1F_Text_ExplainOverheat:
 	.string "But it also sharply cuts the SP. ATK\n"
 	.string "of the POKéMON using it. It might not\l"
 	.string "be suitable for longer battles.$"
+
+LavaridgeTown_Gym_1F_Text_ExplainPowerGloves:
+	.string "The power gloves allow you to,\p"
+	.string "move heavy boulders around with ease.$"
 
 LavaridgeTown_Gym_1F_Text_RegisteredFlannery:
 	.string "Registered GYM LEADER FLANNERY\n"

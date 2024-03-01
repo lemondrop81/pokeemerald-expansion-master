@@ -106,6 +106,9 @@ SootopolisCity_Gym_1F_EventScript_JuanDefeated::
 	call SootopolisCity_Gym_1F_EventScript_GiveWaterPulse
 	closemessage
 	delay 30
+	call SootopolisCity_Gym_1F_EventScript_GiveWaterFallTool
+	closemessage
+	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox SootopolisCity_Gym_1F_Text_RegisteredJuan, MSGBOX_DEFAULT
 	waitfanfare
@@ -127,6 +130,12 @@ SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	msgbox SootopolisCity_Gym_1F_Text_ExplainWaterPulse, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_WATER_PULSE
+	release
+	end
+
+SootopolisCity_Gym_1F_EventScript_GiveWaterFallTool::
+	giveitem ITEM_WATERFALL_TOOL
+	msgbox SootopolisCity_Gym_1F_Text_ExplainWaterFallTool, MSGBOX_DEFAULT
 	release
 	end
 
@@ -252,6 +261,10 @@ SootopolisCity_Gym_1F_Text_ExplainWaterPulse:
 	.string "In use, it will occasionally confuse\n"
 	.string "the target with ultrasonic waves.\p"
 	.string "… … … … … …$"
+
+SootopolisCity_Gym_1F_Text_ExplainWaterFallTool:
+	.string "The waterfall tools allows you\n"
+	.string "climb up waterfalls.\p"
 
 SootopolisCity_Gym_1F_Text_RegisteredJuan:
 	.string "Registered GYM LEADER JUAN\n"

@@ -37,6 +37,9 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 	call FortreeCity_Gym_EventScript_GiveAerialAce
 	closemessage
 	delay 30
+	call FortreeCity_Gym_EventScript_GiveFlyTool
+	closemessage
+	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox FortreeCity_Gym_Text_RegisteredWinona, MSGBOX_DEFAULT
 	waitfanfare
@@ -61,6 +64,11 @@ FortreeCity_Gym_EventScript_GiveAerialAce::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	msgbox FortreeCity_Gym_Text_ExplainAerialAce, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_AERIAL_ACE
+	return
+
+FortreeCity_Gym_EventScript_GiveFlyTool::
+	giveitem ITEM_FLY_TOOL
+	msgbox FortreeCity_Gym_Text_ExplainFlyTool, MSGBOX_DEFAULT
 	return
 
 FortreeCity_Gym_EventScript_WinonaRematch::
@@ -266,6 +274,11 @@ FortreeCity_Gym_Text_ExplainAerialAce:
 	.string "Its speed…\n"
 	.string "No POKéMON should be able to avoid it.\p"
 	.string "… … … … … …$"
+
+FortreeCity_Gym_Text_ExplainFlyTool:
+	.string "With this flying tool you'll be,\n"
+	.string "ablt to revisit the towns you've\n"
+	.string "previously been to.$"
 
 FortreeCity_Gym_Text_RegisteredWinona:
 	.string "Registered GYM LEADER WINONA\n"

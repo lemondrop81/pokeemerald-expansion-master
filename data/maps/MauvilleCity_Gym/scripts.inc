@@ -102,6 +102,9 @@ MauvilleCity_Gym_EventScript_WattsonDefeated::
 	call MauvilleCity_Gym_EventScript_GiveShockWave
 	closemessage
 	delay 30
+	call MauvilleCity_Gym_EventScript_GivePickaxe
+	closemessage
+	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox MauvilleCity_Gym_Text_RegisteredWattson, MSGBOX_DEFAULT
 	waitfanfare
@@ -125,6 +128,13 @@ MauvilleCity_Gym_EventScript_GiveShockWave::
 	msgbox MauvilleCity_Gym_Text_ExplainShockWave, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_SHOCK_WAVE
 	return
+
+MauvilleCity_Gym_EventScript_GivePickaxe::
+	giveitem ITEM_ROCKSMASH_TOOL
+	msgbox MauvilleCity_Gym_Text_ExplainPickaxe, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_TM_SHOCK_WAVE
+	release
+	end
 
 MauvilleCity_Gym_EventScript_CompletedNewMauville::
 	msgbox MauvilleCity_Gym_Text_WattsonGoForthAndEndeavor, MSGBOX_DEFAULT
@@ -368,6 +378,10 @@ MauvilleCity_Gym_Text_ExplainShockWave:
 	.string "It's a trustworthy move that never\n"
 	.string "misses! You can count on it!\p"
 	.string "… … … … … …$"
+
+MauvilleCity_Gym_Text_ExplainPickaxe:
+	.string "With this pickaxe you can break,\p"
+	.string "the boulders around town.\n"
 
 MauvilleCity_Gym_Text_RegisteredWattson:
 	.string "Registered GYM LEADER WATTSON\n"
