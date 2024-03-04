@@ -9819,7 +9819,7 @@ const struct Item gItems[] =
 
     [ITEM_CUT_TOOL] =
     {
-        .name = _("Cut Tool"),
+        .name = _("Axe"),
         .price = 0,
         .importance = 1,
         .description = sCutToolDesc,
@@ -9840,7 +9840,7 @@ const struct Item gItems[] =
 
     [ITEM_SURF_TOOL] =
     {
-        .name = _("Surf Tool"),
+        .name = _("Surfboard"),
         .importance = 1,
         .description = sSurfToolDesc,
         .pocket = POCKET_KEY_ITEMS,
@@ -9850,7 +9850,7 @@ const struct Item gItems[] =
 
     [ITEM_STRENGTH_TOOL] =
     {
-        .name = _("Strength Tool"),
+        .name = _("Power Gloves"),
         .importance = 1,
         .description = sStrengthToolDesc,
         .pocket = POCKET_KEY_ITEMS,
@@ -9860,7 +9860,7 @@ const struct Item gItems[] =
 
     [ITEM_FLASH_TOOL] =
     {
-        .name = _("Flash Tool"),
+        .name = _("Lantern"),
         .importance = 1,
         .description = sFlashToolDesc,
         .pocket = POCKET_KEY_ITEMS,
@@ -9870,7 +9870,7 @@ const struct Item gItems[] =
 
     [ITEM_ROCKSMASH_TOOL] =
     {
-        .name = _("RockSmashTool"),
+        .name = _("Pick Axr"),
         .importance = 1,
         .description = sRockSmashToolDesc,
         .pocket = POCKET_KEY_ITEMS,
