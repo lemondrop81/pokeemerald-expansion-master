@@ -9870,7 +9870,7 @@ const struct Item gItems[] =
 
     [ITEM_ROCKSMASH_TOOL] =
     {
-        .name = _("Pick Axr"),
+        .name = _("Pick Axe"),
         .importance = 1,
         .description = sRockSmashToolDesc,
         .pocket = POCKET_KEY_ITEMS,
