@@ -4833,12 +4833,13 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
 
 static u16 GetPreEvolution(u16 species){
     int i, j;
+    const struct Evolution *evolutions = GetSpeciesEvolutions(species);
 
     for (i = 1; i < NUM_SPECIES; i++)
     {
-        for (j = 0; j < EVOS_PER_MON; j++)
+        for (j = 0; j < EVOLUTIONS_END; j++)
         {
-            if (gEvolutionTable[i][j].targetSpecies == species)
+            if (evolutions[i].targetSpecies == species)
                 return i;
         }
     }
