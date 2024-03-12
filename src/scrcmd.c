@@ -50,6 +50,7 @@
 #include "window.h"
 #include "constants/event_objects.h"
 #include "qol_field_moves.h" // qol_field_moves
+#include "constants/items.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(struct ScriptContext *ctx);
@@ -510,6 +511,15 @@ bool8 ScrCmd_checkitemspace(struct ScriptContext *ctx)
     u32 quantity = VarGet(ScriptReadHalfword(ctx));
 
     gSpecialVar_Result = CheckBagHasSpace(itemId, (u8)quantity);
+    return FALSE;
+}
+
+bool8 ScrCmd_checkpcspace(struct ScriptContext *ctx)
+{
+    u16 itemId = VarGet(ScriptReadHalfword(ctx));
+    u32 quantity = VarGet(ScriptReadHalfword(ctx));
+
+    gSpecialVar_Result = CheckPCHasSpace(itemId, (u8)quantity);
     return FALSE;
 }
 
@@ -1727,6 +1737,21 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
             gSpecialVar_Result = i;
             gSpecialVar_0x8004 = species;
             break;
+        }
+    }
+
+    if (gSpecialVar_Result == PARTY_SIZE && (CheckBagHasItem(MoveToHM(moveId), 1))){
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+            if (!species)
+                break;
+            if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && CanLearnTeachableMove(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL), MoveToHM(moveId) - ITEM_TM01))
+            {
+                gSpecialVar_Result = i;
+                gSpecialVar_0x8004 = species;
+                break;
+            }
         }
     }
     return FALSE;
