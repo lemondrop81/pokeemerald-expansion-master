@@ -470,9 +470,11 @@ extern const u32 gBattleTerrainPalette_Rayquaza[];
 extern const u32 gBattleTerrainPalette_Kyogre[];
 extern const u32 gBattleTerrainPalette_Groudon[];
 extern const u32 gBattleTerrainPalette_BuildingGym[];
-extern const u32 gBattleTerrainPalette_BuildingLeader[];
-extern const u32 gBattleTerrainPalette_StadiumAqua[];
-extern const u32 gBattleTerrainPalette_StadiumMagma[];
+extern const u32 gBattleTerrainPalette_BuildingAqua[];
+extern const u32 gBattleTerrainPalette_BuildingMagma[];
+extern const u32 gBattleTerrainPalette_StadiumLeader[];
+extern const u32 gBattleTerrainTiles_Plain[];
+extern const u32 gBattleTerrainTilemap_Plain[];
 extern const u32 gBattleTerrainPalette_StadiumSidney[];
 extern const u32 gBattleTerrainPalette_StadiumPhoebe[];
 extern const u32 gBattleTerrainPalette_StadiumGlacia[];
@@ -1858,6 +1860,20 @@ extern const u32 gItemIcon_TeraOrb[];
 extern const u32 gItemIconPalette_TeraOrb[];
 extern const u32 gItemIcon_TinyBambooShoot[];
 extern const u32 gItemIconPalette_TinyBambooShoot[];
+
+// HM Items
+extern const u32 gItemIcon_Axe[];
+extern const u32 gItemIconPalette_Axe[];
+extern const u32 gItemIcon_Surfboard[];
+extern const u32 gItemIconPalette_Surfboard[];
+extern const u32 gItemIcon_PowerGlove[];
+extern const u32 gItemIconPalette_PowerGlove[];
+extern const u32 gItemIcon_Lantern[];
+extern const u32 gItemIconPalette_Lantern[];
+extern const u32 gItemIcon_Pickaxe[];
+extern const u32 gItemIconPalette_Pickaxe[];
+extern const u32 gItemIcon_ScubaGear[];
+extern const u32 gItemIconPalette_ScubaGear[];
 
 // Tera Shards
 extern const u32 gItemIcon_TeraShard[];

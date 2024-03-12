@@ -22,6 +22,7 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 	setvar VAR_0x8008, 1
 	call Common_EventScript_SetGymTrainers
 	call_if_eq VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle
+	goto RustboroCity_Gym_EventScript_GiveAxe
 	goto RustboroCity_Gym_EventScript_GiveRockTomb
 	end
 
@@ -30,6 +31,12 @@ RustboroCity_Gym_EventScript_GiveRockTomb::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM_ROCK_TOMB
 	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Gym_EventScript_GiveAxe::
+	giveitem ITEM_CUT_TOOL
+	msgbox RustboroCity_Gym_Text_ExplainAxe, MSGBOX_DEFAULT
 	release
 	end
 
@@ -216,6 +223,11 @@ RustboroCity_Gym_Text_ExplainRockTomb:
 	.string "the move to a POKéMON.\p"
 	.string "Remember, a TM can be used only once,\n"
 	.string "so think before you use it.$"
+
+RustboroCity_Gym_Text_ExplainAxe:
+	.string "With this axe you can cut\p"
+	.string "so think before you use it.$"
+	.string "down all the little trees you see.$"
 
 RustboroCity_Gym_Text_RoxannePostBattle:
 	.string "Since you are so strong, you should\n"

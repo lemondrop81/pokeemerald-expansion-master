@@ -1781,28 +1781,22 @@ static void Task_ChangeSummaryMon(u8 taskId)
 static s8 AdvanceMonIndex(s8 delta)
 {
     struct Pokemon *mon = sMonSummaryScreen->monList.mons;
+    u8 index = sMonSummaryScreen->curMonIndex;
+    u8 numMons = sMonSummaryScreen->maxMonIndex + 1;
+    delta += numMons;
 
-    if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
-    {
-        if (delta == -1 && sMonSummaryScreen->curMonIndex == 0)
-            return -1;
-        else if (delta == 1 && sMonSummaryScreen->curMonIndex >= sMonSummaryScreen->maxMonIndex)
-            return -1;
-        else
-            return sMonSummaryScreen->curMonIndex + delta;
-    }
+    index = (index + delta) % numMons;
+
+    // skip over any Eggs unless on the Info Page
+    if (sMonSummaryScreen->currPageIndex != PSS_PAGE_INFO)
+        while (GetMonData(&mon[index], MON_DATA_IS_EGG))
+            index = (index + delta) % numMons;
+
+    // to avoid "scrolling" to the same Pokemon
+    if (index == sMonSummaryScreen->curMonIndex)
+        return -1;
     else
-    {
-        s8 index = sMonSummaryScreen->curMonIndex;
-
-        do
-        {
-            index += delta;
-            if (index < 0 || index > sMonSummaryScreen->maxMonIndex)
-                return -1;
-        } while (GetMonData(&mon[index], MON_DATA_IS_EGG));
         return index;
-    }
 }
 
 static s8 AdvanceMultiBattleMonIndex(s8 delta)
@@ -3657,35 +3651,54 @@ static void PrintMoveNameAndPP(u8 moveIndex)
 
 static void PrintMovePowerAndAccuracy(u16 moveIndex)
 {
-    const u8 *text;
-    if (moveIndex != 0)
-    {
-        FillWindowPixelRect(PSS_LABEL_WINDOW_MOVES_POWER_ACC, PIXEL_FILL(0), 53, 0, 19, 32);
+    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+    	u16 species = GetMonData(mon, MON_DATA_SPECIES);
+     	const u8 *text;
+     	if (moveIndex != 0)
+     	{
+         	FillWindowPixelRect(PSS_LABEL_WINDOW_MOVES_POWER_ACC, PIXEL_FILL(0), 53, 0, 19, 32);
+		
+		if (moveIndex == MOVE_HIDDEN_POWER)
+		{
+		 	u8 powerBits = ((GetMonData(mon, MON_DATA_HP_IV) & 2) >> 1)
+             	 	 | ((GetMonData(mon, MON_DATA_ATK_IV) & 2) << 0)
+             	 	 | ((GetMonData(mon, MON_DATA_DEF_IV) & 2) << 1)
+              	 	 | ((GetMonData(mon, MON_DATA_SPEED_IV) & 2) << 2)
+              	 	 | ((GetMonData(mon, MON_DATA_SPATK_IV)& 2) << 3)
+             	 	 | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 2) << 4);
+			  
+			u8 powerForHiddenPower = (40 * powerBits) / 63 + 30;
+			  
+			ConvertIntToDecimalStringN(gStringVar1, powerForHiddenPower, STR_CONV_MODE_RIGHT_ALIGN, 3);
+			text = gStringVar1;
+		}
+		else
+		{
+			if (gBattleMoves[moveIndex].power < 2)
+			{
+				text = gText_ThreeDashes;
+			}
+			else
+			{
+				ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[moveIndex].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+				text = gStringVar1;
+			}
+		}
+       
+         	PrintTextOnWindow(PSS_LABEL_WINDOW_MOVES_POWER_ACC, text, 53, 1, 0, 0);
 
-        if (gBattleMoves[moveIndex].power < 2)
-        {
-            text = gText_ThreeDashes;
-        }
-        else
-        {
-            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[moveIndex].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
-            text = gStringVar1;
-        }
+         	if (gBattleMoves[moveIndex].accuracy == 0)
+         	{
+            	  	text = gText_ThreeDashes;
+         	}
+        	else
+         	{
+             	 	ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[moveIndex].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
+             	 	text = gStringVar1;
+         	}
 
-        PrintTextOnWindow(PSS_LABEL_WINDOW_MOVES_POWER_ACC, text, 53, 1, 0, 0);
-
-        if (gBattleMoves[moveIndex].accuracy == 0)
-        {
-            text = gText_ThreeDashes;
-        }
-        else
-        {
-            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[moveIndex].accuracy, STR_CONV_MODE_RIGHT_ALIGN, 3);
-            text = gStringVar1;
-        }
-
-        PrintTextOnWindow(PSS_LABEL_WINDOW_MOVES_POWER_ACC, text, 53, 17, 0, 0);
-    }
+         	PrintTextOnWindow(PSS_LABEL_WINDOW_MOVES_POWER_ACC, text, 53, 17, 0, 0);
+     	}
 }
 
 static void PrintContestMoves(void)

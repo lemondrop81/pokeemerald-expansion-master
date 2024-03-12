@@ -80,6 +80,9 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated::
 	call MossdeepCity_Gym_EventScript_GiveCalmMind
 	closemessage
 	delay 30
+	call MossdeepCity_Gym_EventScript_GiveDiveTool
+	closemessage
+	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox MossdeepCity_Gym_Text_RegisteredTateAndLiza, MSGBOX_DEFAULT
 	waitfanfare
@@ -102,6 +105,11 @@ MossdeepCity_Gym_EventScript_GiveCalmMind::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_CALM_MIND
+	return
+
+MossdeepCity_Gym_EventScript_GiveDiveTool::
+	giveitem ITEM_DIVE_TOOL
+	msgbox MossdeepCity_Gym_Text_ExplainDiveTool, MSGBOX_DEFAULT
 	return
 
 MossdeepCity_Gym_EventScript_TateAndLizaRematch::
@@ -584,6 +592,10 @@ MossdeepCity_Gym_Text_ExplainCalmMind:
 	.string "TATE: It's a move that's perfect…\n"
 	.string "LIZA: For PSYCHIC POKéMON!\p"
 	.string "… … … … … …$"
+
+MossdeepCity_Gym_Text_ExplainDiveTool:
+	.string "TATE: This dive tool allows \n"
+	.string "LIZA: you to explore under the sea.$"
 
 MossdeepCity_Gym_Text_RegisteredTateAndLiza:
 	.string "Registered GYM LEADERS TATE & LIZA\n"

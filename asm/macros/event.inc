@@ -1954,6 +1954,19 @@
 	special CreateEnemyEventMon
 	.endm
 
+	@ Start qol_field_moves
+
+    @ Checks if any Pokémon in the party can learn a specific HM.
+		@ If so, VAR_RESULT is set to the
+		@ (zero-indexed) slot number of the first Pokemon that knows the move. If not, VAR_RESULT is set to PARTY_SIZE.
+		@ VAR_0x8004 is also set to this Pokemon's species.
+		.macro checkpartylearnknowsfieldmove tmhm:req
+		.byte 0xe3
+		.2byte \tmhm
+		.endm
+
+    @ End qol_field_moves
+
 	@ Set up a totem boost for the next battle.
 	@ 'battler' is the position of the mon you want to gain a boost. see B_POSITION_xx in include/constants/battle.h.
 	@ The rest of the arguments are the stat change values to each stat.

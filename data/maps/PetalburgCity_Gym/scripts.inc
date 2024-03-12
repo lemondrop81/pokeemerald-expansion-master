@@ -335,6 +335,7 @@ PetalburgCity_Gym_EventScript_NormanPostBattle::
 	goto_if_unset FLAG_RECEIVED_TM_FACADE, PetalburgCity_Gym_EventScript_GiveFacade2
 	goto_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_NoAmountOfTrainingIsEnough
 	msgbox PetalburgCity_Gym_Text_DadGoingToKeepTraining, MSGBOX_DEFAULT
+	call_if_ge PG_GiveMegaRing
 	release
 	end
 
@@ -342,6 +343,13 @@ PetalburgCity_Gym_EventScript_GiveFacade2::
 	call PetalburgCity_Gym_EventScript_GiveFacade
 	release
 	end
+
+PG_GiveMegaRing::
+	msgbox NormanGivesMR
+	additem ITEM_MEGA_RING
+	closemessage
+	msgbox NormanfinishGiveRing
+	return
 
 PetalburgCity_Gym_EventScript_NormanRematch::
 	trainerbattle_rematch_double TRAINER_NORMAN_1, PetalburgCity_Gym_Text_NormanPreRematch, PetalburgCity_Gym_Text_NormanRematchDefeat, PetalburgCity_Gym_Text_NormanRematchNeedTwoMons
@@ -395,6 +403,9 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
 	closemessage
 	delay 40
+	call PetalburgCity_Gym_EventScript_GiveSurfboard
+	closemessage
+	delay 30
 	playse SE_DOOR
 	delay 10
 	addobject LOCALID_WALLYS_DAD
@@ -410,6 +421,11 @@ PetalburgCity_Gym_EventScript_GiveFacade::
 	setflag FLAG_RECEIVED_TM_FACADE
 	msgbox PetalburgCity_Gym_Text_ExplainFacade, MSGBOX_DEFAULT
 	return
+
+PetalburgCity_Gym_EventScript_GiveSurfboard::
+	giveitem ITEM_SURF_TOOL
+	msgbox PetalburgCity_Gym_Text_ExplainSurfboard, MSGBOX_DEFAULT
+	return	
 
 PetalburgCity_Gym_EventScript_WallysDadArrivesNorth::
 	setvar VAR_0x8008, 1
@@ -1298,6 +1314,11 @@ PetalburgCity_Gym_Text_ExplainFacade:
 	.string "It might be able to turn a bad\n"
 	.string "situation into an advantage.$"
 
+PetalburgCity_Gym_Text_ExplainSurfboard:
+	.string "With this surfboard you'll be,\p"
+	.string "more reaches of Hoenn and travel\n"
+	.string "across the water.$"
+
 PetalburgCity_Gym_Text_DadHappyAndSad:
 	.string "DAD: As the GYM LEADER, I can't\n"
 	.string "express how upset I am…\p"
@@ -1592,4 +1613,15 @@ PetalburgCity_Gym_Text_NormanRematchNeedTwoMons:
 	.string "capable of battle?\p"
 	.string "Sorry, but you'll have to come back\n"
 	.string "with at least two POKéMON.$"
+
+NormanGivesMR:
+	.string "Ahh, by the way, {PLAYER},\n"
+	.string "I got this for you, you should be\l"
+	.string "strong enough to use it.$"
+
+NormanfinishGiveRing:
+	.string "While you have that item with\n"
+	.string "you, your Pokémon that have mega\pstones\n"
+	.string " can mega-evolve in battle.\p"
+	.string "Make good use of it!$"
 
